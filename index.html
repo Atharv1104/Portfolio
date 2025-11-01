@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +7,9 @@
 
   <title>Portfolio</title>
   <link rel="stylesheet" href="output.css" />
-    <link rel="stylesheet" href="font.css" />
-    <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="font.css" />
+  <link rel="icon" type="image/png" href="favicon.png" />
 
-    <script src="matter.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <style>
@@ -37,6 +34,86 @@
     .swiper-pagination-bullet {
       background-color: #23b9eb;
     }
+
+    /* --- START OF MODAL CSS --- */
+    #modalbox {
+      /* 1. Hide the modal by default */
+      visibility: hidden;
+      opacity: 0;
+
+      /* 2. Add a nice fade transition */
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #modalbox:target {
+      /* 3. Show the modal when the URL hash is #modalbox */
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* --- END OF MODAL CSS --- */
+
+    /* --- START OF TOOLTIP CSS --- */
+    .tooltip-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .tooltip-icon {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .tooltip-icon img {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .tooltip-icon span {
+      /* The M, E, R, N letters */
+      margin-top: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .tooltip-icon:hover img {
+      transform: scale(1.1);
+    }
+
+    .tooltip-icon .tooltip {
+      /* Hide by default */
+      visibility: hidden;
+      opacity: 0;
+
+      /* Tooltip appearance */
+      position: absolute;
+      bottom: 100%;
+      /* Position above the icon */
+      margin-bottom: 10px;
+      /* Space from icon */
+      background-color: #1788ae;
+      /* Your site's theme color */
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    /* Show tooltip on hover */
+    .tooltip-icon:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* --- END OF TOOLTIP CSS --- */
   </style>
 </head>
 
@@ -90,10 +167,11 @@
 
       </div>
     </header>
-    <div class="absolute inset-0  md:block " id="wrapper-canvas">
 
+    <div class="absolute inset-0 md:block " id="wrapper-canvas">
     </div>
-    <div class="flex  pointer-events-none justify-between px-5 relative">
+
+    <div class="flex pointer-events-none justify-between px-5 relative">
 
       <div
         class=" flex flex-col items-center gap-8 max-w-screen-xl mx-auto w-full md:flex-row md:items-start md:gap-4 ">
@@ -104,16 +182,20 @@
         <div class=" pointer-events-none relative text-center max-w-{600px} md:text-left md:translate-y-1/4  mx-auto">
           <h1 class=" pointer-events-none text-[32px] md:text-[64px] font-['Spartan'] mb-3 ">Atharv Pore</h1>
           <p class="pointer-events-none text-xl font-['merriweather'] italic mb-8">MERN stack developer</p>
-          <button
-            class="pointer-events-auto bg-[#4595eb] py-2 px-5 rounded font-extrabold bg bg-gradient-to-l from-[#1595b6] to-[#1f2667e6]  hover:scale-110 ease-in-out duration-100">
-            About me ➔
-          </button>
+          <h7>Note-: Do not scroll, use the bar</h7><br/>
+          <a href="#modalbox">
+            <button id="open-about-modal"
+              class="pointer-events-auto bg-[#4595eb] py-2 px-5 rounded font-extrabold bg bg-gradient-to-l from-[#1595b6] to-[#1f2667e6]  hover:scale-110 ease-in-out duration-100">
+              About me ➔
+            </button>
+          </a>
+
         </div>
 
       </div>
 
-
     </div>
+
     <ul class=" mr-2 space-y-3 ml-auto text-[#b0b2c3] absolute top-1/2 right-0 ">
       <li class=" hover:text-white cursor-pointer translate-y-1/4">
         <a href="https://www.linkedin.com/in/atharv-pore/" target="_blank">
@@ -144,18 +226,11 @@
     </ul>
 
 
-
-
-
-    </div>
     <div class=" z-10 py-2 px-5 hover:scale-110 ease-in-out duration-100  mx-auto  mt-10 flex flex-col items-center">
       <button
         class="bg-[#4595eb]  rounded font-extrabold bg bg-gradient-to-l from-[#1595b6] to-[#1f2667e6] w-32 h-10 mb-5 ">
 
         <span>My work</span>
-
-
-
 
       </button>
       <span>
@@ -178,6 +253,7 @@
       </span>
     </div>
   </section>
+
   <section class="max-w-screen-xl mx-auto px-4 relative pb-8 sm:pb-16">
     <h2
       class="text-3xl sm:text-[40px] bg-[#111] relative z-10 font-bold px-4 py-2 w-max mx-auto text-center text-[#1788ae] sm:border-b-2 border-[#1788ae]">
@@ -331,9 +407,10 @@
           <li>• Developed a full-stack web applica on to manage property listings, implementing over 10+ comprehensive
             CRUD (Create, Read, Update,
             Delete) operaons.
-            
-            </li>
-          <li>• Implemented a robust authen ca on and authoriza on system to ensure secure data access and integrity.</li>
+
+          </li>
+          <li>• Implemented a robust authen ca on and authoriza on system to ensure secure data access and integrity.
+          </li>
           <li>• Integrated a ra ngs and reviews system, successfully processing an average of 50+ user feedback
             submissions in testing</li>
         </ul>
@@ -352,14 +429,8 @@
       </div>
     </div>
 
-
-
-
-
-
     <div class="w-[2px] hidden sm:block bg-[#1788ae] absolute top-0 bottom-0 left-1/2 -translate-x-1/2"></div>
   </section>
-
 
 
   <section class="max-w-screen-xl mx-auto px-4 pb-12">
@@ -446,7 +517,7 @@
         <a href="https://github.com/Atharv1104" target="_blank">
           <svg class="w-5 hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
             <path fill="currentColor"
-              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
           </svg>
         </a>
       </li>
@@ -461,6 +532,61 @@
       </li>
     </ul>
   </footer>
+
+  <div id="modalbox" class="pointer-events-auto">
+    <div class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+
+      <div class="bg-gray-900 text-white rounded-lg shadow-xl p-6 w-11/12 md:w-1/2 relative border border-gray-700">
+
+        <div class="flex justify-between items-center mb-4 border-b border-gray-700 pb-3">
+          <h3 class="text-2xl font-bold text-[#1788ae]">About Me</h3>
+          <a href="#">
+            <button id="close-modal-btn" class="text-gray-400 text-3xl hover:text-white">&times;</button>
+          </a>
+
+        </div>
+
+        <div>
+          <p class="mb-4 text-gray-300">
+            Hello! I'm Atharv, a dedicated and passionate full-stack web developer with a background in Electronics and
+            Telecommunication. Eager to apply my problem-solving
+            skills to build scalable software projects and continuously learn new technologies
+          </p>
+          <p class="text-gray-300">My core technologies include:</p>
+
+          <div class="tooltip-container">
+
+            <div class="tooltip-icon mongodb">
+              <img src="/assets/icons/mongodb.svg" alt="mongodb" />
+              <span>M</span>
+              <div class="tooltip"><span>mongoDB</span></div>
+            </div>
+
+            <div class="tooltip-icon express">
+              <div class="tooltip"><span>Express.js</span></div>
+              <img src="/assets/icons/express.svg" alt="express" />
+              <span>E</span>
+            </div>
+
+            <div class="tooltip-icon react">
+              <img src="/assets/icons/react.svg" alt="react" />
+              <span>R</span>
+              <div class="tooltip"><span>React.js</span></div>
+            </div>
+
+            <div class="tooltip-icon node">
+              <img src="/assets/icons/node.svg" alt="node" />
+              <span>N</span>
+              <div class="tooltip"><span>Node.js</span></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
@@ -475,13 +601,14 @@
       },
     });
   </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.12.0/matter.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.12.0/matter.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/matter-wrap@0.2.0/build/matter-wrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/matter-attractors@0.1.6/build/matter-attractors.min.js"></script> 
-    
+  <script src="https://cdn.jsdelivr.net/npm/matter-wrap@0.2.0/build/matter-wrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/matter-attractors@0.1.6/build/matter-attractors.min.js"></script>
+
+  <script src="matter.js"></script>
 
 </body>
 
